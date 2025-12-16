@@ -41,7 +41,7 @@ echo ""
 cat native_saxpy_100m.txt
 echo ""
 
-echo "Native GEMM:"
+echo "Native GEMM (hand-written):"
 ./native/gemm 512 512 512 > native_gemm_512.txt
 cat native_gemm_512.txt
 echo ""
@@ -52,6 +52,19 @@ echo ""
 
 ./native/gemm 2048 2048 2048 > native_gemm_2048.txt
 cat native_gemm_2048.txt
+echo ""
+
+echo "cuBLAS GEMM (optimized library):"
+./native/gemm_cublas 512 512 512 > native_gemm_cublas_512.txt
+cat native_gemm_cublas_512.txt
+echo ""
+
+./native/gemm_cublas 1024 1024 1024 > native_gemm_cublas_1024.txt
+cat native_gemm_cublas_1024.txt
+echo ""
+
+./native/gemm_cublas 2048 2048 2048 > native_gemm_cublas_2048.txt
+cat native_gemm_cublas_2048.txt
 echo ""
 
 echo "Native Reduction:"

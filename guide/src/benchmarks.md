@@ -58,10 +58,21 @@ Matrix multiplication is compute-intensive and benefits from optimization techni
 | 1024x1024   | TBD ms        | TBD GFLOPS       | TBD ms      | TBD GFLOPS    | TBD%  |
 | 2048x2048   | TBD ms        | TBD GFLOPS       | TBD ms      | TBD GFLOPS    | TBD%  |
 
+#### Comparison with cuBLAS (Industry Standard)
+
+cuBLAS represents the theoretical optimal performance achievable on the GPU.
+
+| Size        | rust-cuda GFLOPS | cuBLAS GFLOPS | % of cuBLAS |
+|-------------|------------------|---------------|-------------|
+| 512x512     | TBD              | TBD           | TBD%        |
+| 1024x1024   | TBD              | TBD           | TBD%        |
+| 2048x2048   | TBD              | TBD           | TBD%        |
+
 **Analysis**:
 - Naive GEMM: Simple implementation without optimization
 - Tiled GEMM: Uses shared memory for cache blocking
-- Expected: 85-95% of native CUDA for tiled version
+- cuBLAS: Highly optimized NVIDIA library (theoretical maximum)
+- Expected: 85-95% of native CUDA for tiled, 50-70% of cuBLAS
 - Actual: [To be filled in after running benchmarks]
 
 ### Reduction (Sum)
@@ -81,12 +92,12 @@ Reduction computes the sum of all elements in an array, testing memory bandwidth
 
 ## Summary
 
-| Benchmark      | rust-cuda Performance | Notes |
-|----------------|----------------------|-------|
-| SAXPY          | TBD% of native       | Memory bandwidth limited |
-| GEMM (Naive)   | TBD% of native       | Compute intensive |
-| GEMM (Tiled)   | TBD% of native       | Optimized with shared memory |
-| Reduction      | TBD% of native       | Synchronization overhead |
+| Benchmark      | vs Native CUDA | vs cuBLAS | Notes |
+|----------------|----------------|-----------|-------|
+| SAXPY          | TBD%           | N/A       | Memory bandwidth limited |
+| GEMM (Naive)   | TBD%           | TBD%      | Compute intensive |
+| GEMM (Tiled)   | TBD%           | TBD%      | Optimized with shared memory |
+| Reduction      | TBD%           | N/A       | Synchronization overhead |
 
 ## Key Findings
 
@@ -111,6 +122,7 @@ cd benchmarks/native
 make
 ./saxpy 10000000
 ./gemm 1024 1024 1024
+./gemm_cublas 1024 1024 1024  # cuBLAS comparison
 ./reduction 10000000
 ```
 
