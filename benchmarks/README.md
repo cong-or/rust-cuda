@@ -8,6 +8,26 @@ This directory contains benchmarks comparing rust-cuda performance against nativ
 2. **GEMM** - Matrix multiplication (measures compute-bound performance)
 3. **Reduction** - Sum reduction (measures memory bandwidth)
 
+## Quick Setup (Cloud GPU)
+
+For cloud GPU instances (RunPod, Lambda Labs, Vast.ai, etc.):
+
+```bash
+# Download and run setup script
+curl -sSf https://raw.githubusercontent.com/cong-or/rust-cuda/main/benchmarks/setup_cloud_gpu.sh | bash
+
+# Or if you've already cloned the repo:
+cd benchmarks
+bash setup_cloud_gpu.sh
+```
+
+This will automatically:
+- Install all dependencies
+- Build LLVM 7.1.0
+- Clone and build rust-cuda
+- Build benchmarks
+- Run tests
+
 ## Running Benchmarks
 
 ```bash
