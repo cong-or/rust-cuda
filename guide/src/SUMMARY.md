@@ -19,6 +19,7 @@
 
 ----
 
+[Performance Benchmarks](benchmarks.md)
 [Supported Features](features.md)
 [Frequently Asked Questions](faq.md)
 
